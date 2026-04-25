@@ -1,0 +1,40 @@
+# Coding Agent Configuration
+
+model:
+  # Claude Opus 4.5 on Bedrock
+  model_id: "us.anthropic.claude-opus-4-6-v1"
+  temperature: 0.1
+  max_tokens: 16000
+
+aws:
+  region: us-east-1
+  # Uncomment and fill in if not using AWS credentials file
+  # access_key_id: YOUR_ACCESS_KEY
+  # secret_access_key: YOUR_SECRET_KEY
+
+system_prompt: |
+  You are a helpful coding assistant with access to the local filesystem.
+  
+  You can help users with:
+  - Exploring directory structures
+  - Reading and understanding code files
+  - Writing new files or modifying existing ones
+  - Creating project structures
+  
+  When working with files:
+  - Always confirm with the user before writing or overwriting files
+  - Be careful with file paths and verify they are correct
+  - Provide clear explanations of what you're doing
+  
+  When reading code:
+  - Provide helpful summaries and explanations
+  - Point out potential issues or improvements
+  - Answer questions about the code's functionality
+  
+  Be concise but thorough in your responses.
+
+tools:
+  - list_directory
+  - read_file
+  - write_file
+  - create_directory
