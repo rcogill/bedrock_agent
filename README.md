@@ -8,8 +8,12 @@ A minimal command-line application for running agentic workflows using AWS Bedro
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd bedrock-agent-cli
+git clone https://github.com/rcogill/bedrock_agent.git
+cd bedrock_agent
+
+# Create a new virtual environment
+python -m venv .env
+source .venv/bin/activate
 
 # Install with pip
 pip install -e .
