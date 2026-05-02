@@ -139,6 +139,8 @@ tools:
   - web_search
   - fetch_webpage
   - fetch_pdf
+
+cache_enabled: true
 ```
 
 ## Available Tools
@@ -223,12 +225,20 @@ You: /exit
 Goodbye!
 ```
 
+## Prompt Caching
+
+Prompt caching can be optionally used to reduce costs for long-running tasks. Caching is supported in the agent configuration through the use of two parameters:
+- `cache_enabled` (default: `false`) - Enables prompt caching for the agent.
+- `cache_tokens` (default: 10000) - Interval for setting cache points. A new cache point is set as soon as `cache_tokens` new uncached tokens have been accumulated in the input. 
+
+Prompt caching has only been tested for Anthropic models, and might produce unpredictable results if `cache_enabled: true` is set for an agent using a model from another family.
+
 ## Creating Custom Agents
 
 You can create your own agent configurations by:
 
 1. Creating a new YAML file in the `config/` directory
-2. Specifying the model, system prompt, and tools
+2. Specifying the model, system prompt, and tools, and prompt caching options
 3. Running with `bedrock-agent --config config/your_agent.yaml`
 
 Mix and match tools from both filesystem and research categories to create specialized agents for your use case.

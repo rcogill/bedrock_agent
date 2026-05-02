@@ -1,6 +1,5 @@
 """Configuration handling for the Bedrock Agent CLI."""
 
-import os
 from pathlib import Path
 from typing import Optional
 
@@ -28,6 +27,8 @@ class AgentConfig(BaseModel):
     aws: AWSConfig = Field(default_factory=AWSConfig)
     system_prompt: str = "You are a helpful assistant."
     tools: list[str] = Field(default_factory=list)
+    cache_enabled: bool = False
+    cache_tokens: int = 10000
 
 
 def load_config(config_path: Optional[str] = None) -> AgentConfig:
@@ -42,12 +43,12 @@ def load_config(config_path: Optional[str] = None) -> AgentConfig:
             if path.exists():
                 config_path = str(path)
                 break
-    
+
     if config_path and Path(config_path).exists():
-        with open(config_path, "r") as f:
+        with open(config_path, "r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
         return AgentConfig(**data)
-    
+
     return AgentConfig()
 
 

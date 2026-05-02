@@ -45,3 +45,5 @@ tools:
   - web_search
   - fetch_webpage
   - fetch_pdf
+
+cache_enabled: true

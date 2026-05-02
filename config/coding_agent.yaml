@@ -38,3 +38,5 @@ tools:
   - read_file
   - write_file
   - create_directory
+
+cache_enabled: true
